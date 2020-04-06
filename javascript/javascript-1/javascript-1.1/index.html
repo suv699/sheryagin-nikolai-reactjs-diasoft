@@ -7,8 +7,12 @@
     <title>javascript-task-1.1</title>
 </head>
 <body>
+    <button id="btn">Hello world!</button>
     <script>
-        alert('Hello World !')
+        var btn = document.querySelector('#btn')
+        btn.addEventListener('click', (e) => {
+            alert('Hello World !')
+        })
     </script>
 </body>
 </html>
