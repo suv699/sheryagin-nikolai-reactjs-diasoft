@@ -1,24 +1,25 @@
 export default function getPath(elem, document, retFirstSelector) {
-    return getParentElem(elem);
+    return getParentElem(elem, '', document);
 }
 
-function getParentElem(el, selector = '') {
+function getParentElem(el, selector = '', document) {
     let selectorElem = '';
     let {tagName, id, className } = el;
-
-    let count = el.parentNode.childElementCount
-    let data = el.parentNode.children
+    const {childElementCount: count, children: data} = el.parentNode;
     if (count > 1) {
-        for(var i =0 ; i < count ; i ++) {
+        for(let i =0 ; i < count ; i ++) {
             if(data[i] == el){
-                tagName += ':nth-child(' + (i + 1) + ')';
+                tagName += `:nth-child(${i + 1})`
             }
         }
     }
-    selectorElem = tagName.toLowerCase() + (id ? '#'+id : '') + (!!className && className.replace ? '.' + className.replace(/\s/g, '.') : '')
+    selectorElem = tagName.toLowerCase() + (id ? '#'+id : '') + (!!className && className.replace ? '.' + (className).trim().replace(/\s/g, '.').replace(/[:]/g, '\\$&') : '')
     if (selector !== '') {
         selectorElem = selectorElem + ' > ' + selector
     }
-    return el.parentElement ? getParentElem(el.parentElement,  selectorElem) : selectorElem;
+    if(document.querySelectorAll(selectorElem).length === 1) {
+        return selectorElem
+    }
+    return el.parentElement ? getParentElem(el.parentElement,  selectorElem, document) : selectorElem;
 }
 

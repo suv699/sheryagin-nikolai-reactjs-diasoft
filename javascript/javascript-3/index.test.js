@@ -15,6 +15,13 @@ function itNode(node, index, document){
 }
 
 describe('getPath', () => {
+    const testHtml = fs.readFileSync(__dirname+'/test2.html', 'UTF-8'); // читаем файл
+    const { document } = (new JSDOM(testHtml)).window; //парсим файл (используется либа jsdom)
+    const items = document.querySelectorAll('*'); // формируем список всех элементов
+    items.forEach((node, index) => itNode(node, index, document)); // бежим по элементам
+});
+
+describe('getPath', () => {
     const testHtml = fs.readFileSync(__dirname+'/test.html', 'UTF-8'); // читаем файл
     const { document } = (new JSDOM(testHtml)).window; //парсим файл (используется либа jsdom)
     const items = document.querySelectorAll('*'); // формируем список всех элементов
