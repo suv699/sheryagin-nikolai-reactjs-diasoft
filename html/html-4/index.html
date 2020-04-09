@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login Form</title>
+</head>
+<body>
+    <div class="container">
+        <form onSubmit="onSubmit(event)" id="loginForm">
+            <h2>Sing In</h2>
+            <div class="container-form">
+                <div class="input-field">
+                    <div class="input-login">
+                        <input type="text" id="login" value="" placeholder="login">
+                        <br>
+                        <label id="lbLogin">Поле обязательное для заполнения</label>
+                        <br>
+                    </div>
+                    <div class="input-password">
+                        <input type="password" name="password" id="password" value="" placeholder="password" class="inp-class">
+                        <br>
+                        <label id="lbPassword">Поле обязательное для заполнения</label>
+                        <br>
+                    </div>
+                </div>
+                <div class="input-btn">
+                    <div class="spinner-box" id="spinner" hidden="false">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="spinner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-spinner fa-w-16 fa-spin fa-lg"><path fill="currentColor" d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" class=""></path></svg>
+                    </div>
+                    <input id="bntSubmit" type="submit" value="Sign In">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validatefield () {
+            let validLogin = false;
+            let validPassword = false;
+
+            const login = document.getElementById('login');
+            const password = document.getElementById('password');
+
+            const lbLogin = document.getElementById('lbLogin');
+            const lbPassword = document.getElementById('lbPassword');
+
+            if (login.value && login.value.length) {
+                lbLogin.style.display = 'none';
+                validLogin = true;
+            } else {
+                lbLogin.style.display = 'inline';
+                validLogin = false;
+            }
+            if (password.value && password.value.length) {
+                lbPassword.style.display = 'none';
+                validPassword = true;
+            } else {
+                lbPassword.style.display = 'inline';
+                validPassword = false;
+            }
+
+            return validLogin && validPassword;
+        }
+        function onSubmit (event) {
+            event.preventDefault ();
+            event.stopImmediatePropagation ();
+            const validForm = validatefield();
+            if (validForm) {
+                $("form[id='loginForm']").find("input").each(function() {
+                    this.disabled = true;
+                });
+                btnSpinnerShow();
+                resetForm();
+            }
+        }
+        function resetForm () {
+            setTimeout(function() {
+                btnSpinnerHide();
+                const login = document.getElementById('login');
+                login.value = '';
+                const password = document.getElementById('password');
+                password.value = '';
+                $("form[id='loginForm']").find("input").each(function() {
+                    this.disabled = false;
+                });
+            }, 2000); 
+        }
+
+        function btnSpinnerShow () {
+            document.getElementById('spinner').hidden = false;
+        }
+        function btnSpinnerHide () {
+            document.getElementById('spinner').hidden = true;
+        }
+    </script>
+</body>
+</html>
