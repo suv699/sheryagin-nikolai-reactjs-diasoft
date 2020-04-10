@@ -8,6 +8,7 @@ const FuncArrTest = function() {
     this.compareArr = []
     this.arrFunc = []
     this.msAll = 0
+    this.exitIndex = 1;
 
     this.generateTestFuncArr = (count) => {
         for(let i = 0; i < count; i++) {
@@ -16,12 +17,14 @@ const FuncArrTest = function() {
 
             const fn = () => new Promise(resolve => {
                 this.testConsole.log('fn' + i)
-                setTimeout(() => resolve(i), ms)
+                setTimeout(() => resolve(i + 1), ms)
             })
 
             this.arrFunc.push(fn)
             this.compareArr.push('fn'+i)
             this.compareArr.push('reduce')
+
+            this.exitIndex*=(i + 1)
         }
     }
 
@@ -38,7 +41,7 @@ const FuncArrTest = function() {
         return this.arrFunc
     }
     this.getCompareArr = () => {
-        this.compareArr.push(this.getArrFunc().length + '')
+        this.compareArr.push(this.exitIndex)
         return this.compareArr
     }
 }

@@ -1,12 +1,9 @@
-function promiseReduce(asyncFunctions, reduce, initialValue) {
-    const localFunc = async () => {
-        for await (let item of asyncFunctions) {
-            await item().then(() => {reduce()});
+async function promiseReduce(asyncFunctions, reduce, initialValue) {
+        let v = initialValue
+        for(let item of asyncFunctions) {
+            const p = await item();
+            v = reduce(p, v)
         }
-        return new Promise(resolve => resolve(asyncFunctions.length))
-    }
-
-    return localFunc()
-
+        return new Promise(resolve => resolve(v))
 }
 module.exports = promiseReduce;
