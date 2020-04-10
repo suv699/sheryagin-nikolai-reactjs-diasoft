@@ -1,0 +1,64 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(orange, grey, yellow);
+    background-size: 100%;
+    text-align: center;    
+}
+
+.container {
+    width: 500px;
+    height: 500px;
+    margin: 50px auto;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgba(102, 255, 51, 0.2);
+}
+
+.container-form .input-field input {
+    width: 300px;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.input-btn {
+    position: relative;
+}
+
+.container-form .input-btn input {
+    padding: 15px 30px;
+    margin: 5px 0px 5px 0px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: gray;
+    border: none;
+}
+.input-login {
+    position: relative;
+}
+.input-password {
+    position: relative;
+}
+label {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 95px;
+    color: red;
+    /* display: inline; */
+}
+
+.spinner-box {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
