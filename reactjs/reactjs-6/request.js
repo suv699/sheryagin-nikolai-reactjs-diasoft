@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-
+const URL = 'http://localhost:5000/api'
 function request(count, type) {
     const arr = getNewArray(count) || []
     return type === 'sync' ? syncRequest(arr) : asyncRequest(arr)
@@ -7,13 +7,12 @@ function request(count, type) {
 async function asyncRequest(r) {
     let promises = []
     for(let item of r) {
-        promises.push(await fetch('http://localhost:5000/api'))
+        promises.push(await fetch(URL))
     }
-    return await Promise.all(promises)
+    return Promise.all(promises)
 }
-async function syncRequest(r) {
-    const p = r.map(() => fetch('http://localhost:5000/api'));
-    return await Promise.all(p)
+function syncRequest(r) {
+    return Promise.all(r.map(() => fetch(URL)))
 }
 function getNewArray(c) {
     let a = []
