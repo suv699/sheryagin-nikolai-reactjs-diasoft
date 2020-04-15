@@ -2,10 +2,7 @@ const fetch = require('node-fetch');
 
 function request(count, type) {
     const arr = getNewArray(count) || []
-    let allPromise = []
-    allPromise = type === 'sync' ? syncRequest(arr) : asyncRequest(arr)
-
-    return allPromise
+    return type === 'sync' ? syncRequest(arr) : asyncRequest(arr)
 }
 async function asyncRequest(r) {
     let promises = []
