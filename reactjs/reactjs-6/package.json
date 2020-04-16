@@ -1,0 +1,24 @@
+{
+  "name": "react-6-simple-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "jest",
+    "server": "node server.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run test\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "jest": "^25.3.0",
+    "nodemon": "^2.0.3"
+  }
+}
