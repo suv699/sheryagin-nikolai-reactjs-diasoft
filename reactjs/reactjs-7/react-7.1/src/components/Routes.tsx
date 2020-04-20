@@ -3,7 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 import LoginForm from "../forms/LoginForm"
 import RegistrationForm from "../forms/RegistrationForm"
 
-export const useRoutes = (isAuthenticated: any) => {
+export const useRoutes = (isAuthenticated: boolean) => {
   if (isAuthenticated) {
     return (
       <Switch>
