@@ -1,10 +1,8 @@
 import React from 'react'
-import { useTheme } from '@material-ui/core/styles'
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts'
 import {Typography} from "@material-ui/core"
 
 export default function Chart(props: any) {
-  const theme = useTheme()
   return (
     <React.Fragment>
       <Typography>Today</Typography>
@@ -18,17 +16,17 @@ export default function Chart(props: any) {
             left: 24,
           }}
         >
-          <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-          <YAxis stroke={theme.palette.text.secondary}>
+          <XAxis dataKey="time" />
+          <YAxis >
             <Label
               angle={270}
               position="left"
-              style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
+              style={{ textAnchor: 'middle' }}
             >
               Sales ($)
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
+          <Line type="monotone" dataKey="amount" dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
