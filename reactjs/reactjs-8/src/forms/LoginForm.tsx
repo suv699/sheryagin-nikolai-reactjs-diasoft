@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container'
 import {TextField} from '@material-ui/core'
 
 interface IProps {
+  // eslint-disable-next-line @typescript-eslint/member-delimiter-style
   loginAction(isAuth: boolean): void
 }
 

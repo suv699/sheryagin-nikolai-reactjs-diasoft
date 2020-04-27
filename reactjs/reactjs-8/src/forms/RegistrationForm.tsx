@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import {TextField} from '@material-ui/core'
 
 interface IProps {
+  // eslint-disable-next-line @typescript-eslint/member-delimiter-style
   registrationAction(isAuth: boolean): void
 }
 

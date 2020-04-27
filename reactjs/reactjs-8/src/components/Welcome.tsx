@@ -3,29 +3,6 @@ import {Chart} from './Chart';
 import {Container, Grid, Paper} from '@material-ui/core';
 import SimpleTable from './SimpleTable';
 
-export const Welcome: FC = () => {
-  return (
-    <div className="main-container">
-      <main className="welcome-content">
-        <Container maxWidth="lg" className="welcome-container">
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Paper className="chart">
-                <Chart data={chartData} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className="paper">
-                <SimpleTable data={rowsTable} />
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </main>
-    </div>
-  );
-};
-
 // Generate Sales Data
 function createData(time: string, amount: number | undefined) {
   return {time, amount};
@@ -65,3 +42,26 @@ const rowsTable = [
   createDataTable(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
   createDataTable(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
 ];
+
+export const Welcome: FC = () => {
+  return (
+    <div className="main-container">
+      <main className="welcome-content">
+        <Container maxWidth="lg" className="welcome-container">
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Paper className="chart">
+                <Chart data={chartData} />
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className="paper">
+                <SimpleTable data={rowsTable} />
+              </Paper>
+            </Grid>
+          </Grid>
+        </Container>
+      </main>
+    </div>
+  );
+};

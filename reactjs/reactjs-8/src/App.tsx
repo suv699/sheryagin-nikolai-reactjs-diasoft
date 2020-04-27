@@ -1,23 +1,23 @@
-import React, {FC, useState, useEffect} from 'react'
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
-import NavBar from './components/Navbar'
-import {LoginForm} from './forms/LoginForm'
-import {RegistrationForm} from './forms/RegistrationForm'
-import {Welcome} from './components/Welcome'
-import {Todo} from './components/Todo'
+import React, {FC, useState, useEffect} from 'react';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import NavBar from './components/Navbar';
+import {LoginForm} from './forms/LoginForm';
+import {RegistrationForm} from './forms/RegistrationForm';
+import {Welcome} from './components/Welcome';
+import {Todo} from './components/Todo';
 
 const App: FC = () => {
-  const [isAuthenticated, setAuth] = useState(false)
+  const [isAuthenticated, setAuth] = useState(false);
 
   const onHandleLogin = (isAuth: boolean) => {
-    setAuth(isAuth)
-    localStorage.setItem('isAuthenticated', JSON.stringify(isAuth))
-  }
+    setAuth(isAuth);
+    localStorage.setItem('isAuthenticated', JSON.stringify(isAuth));
+  };
   //для проверки авторизованного пользователя при обновлении страницы, признак храним в localStorage
   useEffect(() => {
-    const isAuth = JSON.parse(localStorage.getItem('isAuthenticated') || 'false') as boolean
-    setAuth(isAuth)
-  }, [])
+    const isAuth = JSON.parse(localStorage.getItem('isAuthenticated') || 'false') as boolean;
+    setAuth(isAuth);
+  }, []);
 
   return (
     <div className="App">
@@ -43,7 +43,7 @@ const App: FC = () => {
         )}
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

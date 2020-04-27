@@ -8,9 +8,9 @@ import {NavLink} from 'react-router-dom';
 interface IProps {
   onLogout(isAuth: boolean): void;
 }
-const NavBar: FC<IProps> = (props) => {
+const NavBar: FC<IProps> = ({onLogout}: IProps) => {
   const logoutAction = () => {
-    props.onLogout(false);
+    onLogout(false);
     localStorage.removeItem('isAuthenticated');
   };
   return (

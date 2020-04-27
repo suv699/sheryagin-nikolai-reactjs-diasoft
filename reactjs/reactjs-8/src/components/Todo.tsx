@@ -1,25 +1,25 @@
-import React, {ChangeEvent, FC, useState, useEffect} from 'react'
-import {Container, Button, TextField} from '@material-ui/core'
-import {TodoList} from './TodoList'
+import React, {ChangeEvent, FC, useState, useEffect} from 'react';
+import {Container, Button, TextField} from '@material-ui/core';
+import {TodoList} from './TodoList';
 
 interface ITodo {
-  title: string
-  id: number
-  checked: boolean
+  title: string;
+  id: number;
+  checked: boolean;
 }
 
 interface IState {
-  todos: ITodo[]
-  title?: String
+  todos: ITodo[];
+  title?: string;
 }
 
 export const Todo: FC = () => {
-  const [title, setTitle] = useState('')
-  const [todos, setTodos] = useState<ITodo[]>([])
+  const [title, setTitle] = useState('');
+  const [todos, setTodos] = useState<ITodo[]>([]);
 
   const handleOnChangeTitle = ({target: {value: title}}: ChangeEvent<HTMLInputElement>) => {
-    setTitle(title)
-  }
+    setTitle(title);
+  };
   const addTodo = () => {
     title &&
       setTodos((prev) => [
@@ -29,32 +29,32 @@ export const Todo: FC = () => {
           checked: false,
         },
         ...prev,
-      ])
+      ]);
 
-    setTitle('')
-  }
+    setTitle('');
+  };
   const handleToggleChecked = (id: number) => {
     setTodos(
       todos.map((item) => {
         if (item.id === id) {
-          item.checked = !item.checked
+          item.checked = !item.checked;
         }
-        return item
+        return item;
       }),
-    )
-  }
+    );
+  };
   const handleToggleDelete = (id: number) => {
-    setTodos(todos.filter((it) => it.id !== id))
-  }
+    setTodos(todos.filter((it) => it.id !== id));
+  };
   //при заходе на форму проверяем localStorage
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[])
-  }, [])
+    setTodos(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]);
+  }, []);
 
   //обновляем в localStorage как только todos меняется
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos))
-  }, [todos])
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="todo-container">
@@ -81,5 +81,5 @@ export const Todo: FC = () => {
         </Container>
       </main>
     </div>
-  )
-}
+  );
+};

@@ -12,10 +12,10 @@ type TProps = {
 };
 type TRow = {
   id: number;
-  date: String;
-  name: String;
-  shipTo: String;
-  paymentMethod: String;
+  date: string;
+  name: string;
+  shipTo: string;
+  paymentMethod: string;
   amount: number;
 };
 export default function SimpleTable({data: rows = []}: TProps) {

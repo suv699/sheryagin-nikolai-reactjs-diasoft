@@ -9,7 +9,7 @@ import {Typography} from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 interface ITodo {
-  title: String;
+  title: string;
   id: number;
   checked: boolean;
 }
@@ -20,7 +20,7 @@ type IProps = {
   toggleDelete(id: number): any;
 };
 
-export const TodoList: FC<IProps> = ({todo, toggleChecked, toggleDelete}) => {
+export const TodoList: FC<IProps> = ({todo, toggleChecked, toggleDelete}: IProps) => {
   const handleToggleCheck = (id: number) => () => {
     toggleChecked(id);
   };

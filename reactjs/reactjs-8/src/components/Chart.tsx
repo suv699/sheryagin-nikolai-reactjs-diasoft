@@ -10,7 +10,7 @@ type TProps = {
   data: IRows[];
 };
 
-export const Chart: FC<TProps> = ({data}) => {
+export const Chart: FC<TProps> = ({data}: TProps) => {
   return (
     <>
       <Typography>Today</Typography>
