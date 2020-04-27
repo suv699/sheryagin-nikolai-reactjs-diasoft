@@ -1,38 +1,41 @@
-import React, {ChangeEvent, FC, useState} from 'react'
-import {NavLink} from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import {TextField} from '@material-ui/core'
+import React, {ChangeEvent, FC, useState} from 'react';
+import {NavLink} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import {TextField} from '@material-ui/core';
+import {WrapperTextField} from '../components/WrapperTextField';
 
+const Login = WrapperTextField(TextField);
+const Password = WrapperTextField(TextField);
 interface IProps {
   // eslint-disable-next-line @typescript-eslint/member-delimiter-style
-  registrationAction(isAuth: boolean): void
+  registrationAction(isAuth: boolean): void;
 }
 
 export const RegistrationForm: FC<IProps> = ({registrationAction}) => {
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const onChangeLogin = ({target: {value: login}}: ChangeEvent<HTMLInputElement>) => {
-    setLogin(login)
-  }
+    setLogin(login);
+  };
   const onChangePassword = ({target: {value: password}}: ChangeEvent<HTMLInputElement>) => {
-    setPassword(password)
-  }
+    setPassword(password);
+  };
   const onChangeEmail = ({target: {value: email}}: ChangeEvent<HTMLInputElement>) => {
-    setEmail(email)
-  }
+    setEmail(email);
+  };
 
   const handlerRegistration = (event: any) => {
-    event.preventDefault()
+    event.preventDefault();
     if (!login || !password) {
-      return
+      return;
     }
-    registrationAction(true)
-  }
+    registrationAction(true);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -41,7 +44,7 @@ export const RegistrationForm: FC<IProps> = ({registrationAction}) => {
           Registration
         </Typography>
         <form className="login-form" noValidate onSubmit={handlerRegistration}>
-          <TextField
+          <Login
             variant="outlined"
             margin="normal"
             onChange={onChangeLogin}
@@ -54,7 +57,7 @@ export const RegistrationForm: FC<IProps> = ({registrationAction}) => {
             autoComplete="login"
             autoFocus
           />
-          <TextField
+          <Password
             variant="outlined"
             margin="normal"
             onChange={onChangePassword}
@@ -89,5 +92,5 @@ export const RegistrationForm: FC<IProps> = ({registrationAction}) => {
         </form>
       </div>
     </Container>
-  )
-}
+  );
+};

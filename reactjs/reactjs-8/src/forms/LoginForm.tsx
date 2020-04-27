@@ -1,33 +1,37 @@
-import React, {FC, useState, ChangeEvent} from 'react'
-import {NavLink} from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import {TextField} from '@material-ui/core'
+import React, {FC, useState, ChangeEvent} from 'react';
+import {NavLink} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import {TextField} from '@material-ui/core';
+import {WrapperTextField} from '../components/WrapperTextField';
 
+const Login = WrapperTextField(TextField);
+const Password = WrapperTextField(TextField);
 interface IProps {
-  // eslint-disable-next-line @typescript-eslint/member-delimiter-style
-  loginAction(isAuth: boolean): void
+  loginAction(isAuth: boolean): void;
 }
 
 export const LoginForm: FC<IProps> = ({loginAction}) => {
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
 
   const onChangeLogin = ({target: {value: login}}: ChangeEvent<HTMLInputElement>) => {
-    setLogin(login)
-  }
+    setLogin(login);
+  };
   const onChangePassword = ({target: {value: password}}: ChangeEvent<HTMLInputElement>) => {
-    setPassword(password)
-  }
-
+    setPassword(password);
+  };
+  const isError = false;
   const onHandleLogin = () => {
-    loginAction(true)
-  }
+    console.log('isError - ', isError);
+    debugger;
+    loginAction(true);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -36,7 +40,7 @@ export const LoginForm: FC<IProps> = ({loginAction}) => {
           Sign in
         </Typography>
         <form className="login-form" noValidate onSubmit={onHandleLogin}>
-          <TextField
+          <Login
             variant="outlined"
             margin="normal"
             required
@@ -47,9 +51,10 @@ export const LoginForm: FC<IProps> = ({loginAction}) => {
             name="login"
             autoComplete="login"
             onChange={onChangeLogin}
+            error={isError}
             autoFocus
           />
-          <TextField
+          <Password
             variant="outlined"
             margin="normal"
             required
@@ -78,5 +83,5 @@ export const LoginForm: FC<IProps> = ({loginAction}) => {
         </form>
       </div>
     </Container>
-  )
-}
+  );
+};
