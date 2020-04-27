@@ -1,121 +1,92 @@
-import React, { Component } from 'react'
-import {NavLink} from "react-router-dom"
+import React, {ChangeEvent, FC, useState} from 'react'
+import {NavLink} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
-import Grid from "@material-ui/core/Grid"
-import { CustomTextField } from '../components/CustomTextField'
-
+import Grid from '@material-ui/core/Grid'
+import {TextField} from '@material-ui/core'
 
 interface IProps {
-	onHandleLogin?: any
+  registrationAction(isAuth: boolean): void
 }
 
-interface IState {
-	login?: String;
-	password?: String;
-	email?: String;
-	isErrorLogin?: boolean;
-	isErrorPassword?: boolean;
-	isErrorEmail?: boolean;
-}
+export const RegistrationForm: FC<IProps> = ({registrationAction}) => {
+  const [login, setLogin] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
 
-export default class RegistrationForm extends Component<IProps, IState> {
-	constructor(props: IProps, state: IState) {
-		super(props)
-			this.state = {
-				login: '',
-				password: '',
-				isErrorLogin: false,
-				isErrorPassword: false,
-				isErrorEmail: false
-			};
-	}
-	public handlerRegistration: any = (event: any) => {
-		event.preventDefault()
-		if (!this.state.login || !this.state.password) {
-			this.showErrorField()
-			return
-		}
-		this.props.onHandleLogin(true)
-	}
+  const onChangeLogin = ({target: {value: login}}: ChangeEvent<HTMLInputElement>) => {
+    setLogin(login)
+  }
+  const onChangePassword = ({target: {value: password}}: ChangeEvent<HTMLInputElement>) => {
+    setPassword(password)
+  }
+  const onChangeEmail = ({target: {value: email}}: ChangeEvent<HTMLInputElement>) => {
+    setEmail(email)
+  }
 
-	public showErrorField: any = () => {
-		this.setState({isErrorPassword: !!!this.state.password, isErrorLogin: !!!this.state.login})
-	}
+  const handlerRegistration = (event: any) => {
+    event.preventDefault()
+    if (!login || !password) {
+      return
+    }
+    registrationAction(true)
+  }
 
-	public onChangeLogin: any = ({target: { value: login }}: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({login})
-		this.state.isErrorLogin && setTimeout(()=>{this.showErrorField()}, 0) 	
-	}
-	
-	public onChangePassword: any = ({target: { value: password }}: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({password})
-		this.state.isErrorPassword && setTimeout(()=>{this.showErrorField()}, 0) 	
-	}
-
-	public onChangeEmail: any = ({target: { value: email }}: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({email})
-		this.state.isErrorEmail && setTimeout(()=>{this.showErrorField()}, 0) 	
-	}
-	
-  render() {
-		return (
-			<Container component="main" maxWidth="xs">
-				<div className='login-container'>
-					<Typography component="h1" variant="h5">
-						Registration
-					</Typography>
-					<form className='login-form' noValidate onSubmit={this.handlerRegistration}>
-						<CustomTextField
-							error={this.state.isErrorLogin}
-							onChange={this.onChangeLogin}
-							required
-							fullWidth
-							id="login"
-							label="Login"
-							name="login"
-							autoComplete="login"
-							autoFocus
-						/>
-						<CustomTextField
-							error={this.state.isErrorPassword}
-							onChange={this.onChangePassword}
-							required
-							fullWidth
-							name="password"
-							label="Password"
-							type="password"
-							id="password"
-							autoComplete="current-password"
-						/>
-						<CustomTextField
-							error={this.state.isErrorEmail}
-							onChange={this.onChangeEmail}
-							fullWidth
-							id="email"
-							label="Email Address"
-							name="email"
-							autoComplete="email"
-						/>
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							color="primary"
-						>
-							Registration
-						</Button>
-						<Grid container>
-							<Grid item xs>
-								<NavLink to="/">
-									Sign In
-								</NavLink>
-							</Grid>
-						</Grid>
-					</form>
-				</div>
-			</Container>
-		);
-	}
+  return (
+    <Container component="main" maxWidth="xs">
+      <div className="login-container">
+        <Typography component="h1" variant="h5">
+          Registration
+        </Typography>
+        <form className="login-form" noValidate onSubmit={handlerRegistration}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            onChange={onChangeLogin}
+            value={login}
+            required
+            fullWidth
+            id="login"
+            label="Login"
+            name="login"
+            autoComplete="login"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            onChange={onChangePassword}
+            value={password}
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            onChange={onChangeEmail}
+            value={email}
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+          />
+          <Button type="submit" fullWidth variant="contained" color="primary">
+            Registration
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <NavLink to="/">Sign In</NavLink>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+    </Container>
+  )
 }

@@ -1,26 +1,24 @@
-import React from 'react'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
+import React from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 type TProps = {
-	data: TRow[];
-}
+  data: TRow[];
+};
 type TRow = {
-	id: number;
-	date: String;
-	name: String;
-	shipTo: String;
-	paymentMethod: String;
-	amount: number;
-
-}
-export default function SimpleTable(props: TProps) {
-	const rows = props.data || []
+  id: number;
+  date: String;
+  name: String;
+  shipTo: String;
+  paymentMethod: String;
+  amount: number;
+};
+export default function SimpleTable({data: rows = []}: TProps) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -34,17 +32,17 @@ export default function SimpleTable(props: TProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row: TRow) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+          {rows.map(({id, date, name, shipTo, paymentMethod, amount}) => (
+            <TableRow key={id}>
+              <TableCell>{date}</TableCell>
+              <TableCell>{name}</TableCell>
+              <TableCell>{shipTo}</TableCell>
+              <TableCell>{paymentMethod}</TableCell>
+              <TableCell align="right">{amount}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  )
+  );
 }
