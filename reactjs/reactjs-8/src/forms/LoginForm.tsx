@@ -26,10 +26,7 @@ export const LoginForm: FC<IProps> = ({loginAction}) => {
   const onChangePassword = ({target: {value: password}}: ChangeEvent<HTMLInputElement>) => {
     setPassword(password);
   };
-  const isError = false;
   const onHandleLogin = () => {
-    console.log('isError - ', isError);
-    debugger;
     loginAction(true);
   };
 
@@ -51,7 +48,6 @@ export const LoginForm: FC<IProps> = ({loginAction}) => {
             name="login"
             autoComplete="login"
             onChange={onChangeLogin}
-            error={isError}
             autoFocus
           />
           <Password

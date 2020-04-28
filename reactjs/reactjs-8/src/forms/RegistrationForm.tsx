@@ -10,7 +10,6 @@ import {WrapperTextField} from '../components/WrapperTextField';
 const Login = WrapperTextField(TextField);
 const Password = WrapperTextField(TextField);
 interface IProps {
-  // eslint-disable-next-line @typescript-eslint/member-delimiter-style
   registrationAction(isAuth: boolean): void;
 }
 
