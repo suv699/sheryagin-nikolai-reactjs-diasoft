@@ -42,7 +42,7 @@ export const RegistrationForm: FC<IProps> = ({registrationAction}) => {
         <Typography component="h1" variant="h5">
           Registration
         </Typography>
-        <form className="login-form" noValidate onSubmit={handlerRegistration}>
+        <form className="login-form" onSubmit={handlerRegistration}>
           <Login
             variant="outlined"
             margin="normal"

@@ -36,7 +36,7 @@ export const LoginForm: FC<IProps> = ({loginAction}) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className="login-form" noValidate onSubmit={onHandleLogin}>
+        <form className="login-form" onSubmit={onHandleLogin}>
           <Login
             variant="outlined"
             margin="normal"
