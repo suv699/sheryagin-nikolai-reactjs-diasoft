@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, useState} from 'react';
+import React, {ChangeEvent, FormEvent, FC, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -28,7 +28,7 @@ export const RegistrationForm: FC<IProps> = ({registrationAction}) => {
     setEmail(email);
   };
 
-  const handlerRegistration = (event: any) => {
+  const handlerRegistration = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!login || !password) {
       return;

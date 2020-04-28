@@ -16,8 +16,8 @@ interface ITodo {
 
 type IProps = {
   todo: ITodo[];
-  toggleChecked(id: number): any;
-  toggleDelete(id: number): any;
+  toggleChecked: (id: number) => void;
+  toggleDelete: (id: number) => void;
 };
 
 export const TodoList: FC<IProps> = ({todo, toggleChecked, toggleDelete}: IProps) => {
