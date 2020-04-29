@@ -10,12 +10,12 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {ITodo} from '../models/intefeces';
 
 type IProps = {
-  todo: ITodo[];
+  children: ITodo[];
   toggleChecked(id: number): any;
   toggleDelete(id: number): any;
 };
 
-export const TodoList: FC<IProps> = ({todo, toggleChecked, toggleDelete}: IProps) => {
+export const TodoList: FC<IProps> = ({children, toggleChecked, toggleDelete}: IProps) => {
   const handleToggleCheck = (id: number) => () => {
     toggleChecked(id);
   };
@@ -50,8 +50,8 @@ export const TodoList: FC<IProps> = ({todo, toggleChecked, toggleDelete}: IProps
       </List>
     </Paper>
   );
-  if (!todo.length) {
+  if (!children.length) {
     return <Typography color="textSecondary">Записей нет</Typography>;
   }
-  return <>{customList(todo)}</>;
+  return <>{customList(children)}</>;
 };

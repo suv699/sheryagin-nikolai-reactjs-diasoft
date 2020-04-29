@@ -7,16 +7,16 @@ interface IRows {
   amount: number | undefined;
 }
 type TProps = {
-  data: IRows[];
+  children: IRows[];
 };
 
-export const Chart: FC<TProps> = ({data}: TProps) => {
+export const Chart: FC<TProps> = ({children}: TProps) => {
   return (
     <>
       <Typography>Today</Typography>
       <ResponsiveContainer width={'100%'} height={150}>
         <LineChart
-          data={data}
+          data={children}
           margin={{
             top: 16,
             right: 16,

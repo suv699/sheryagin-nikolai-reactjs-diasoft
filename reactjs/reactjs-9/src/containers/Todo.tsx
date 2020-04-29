@@ -59,7 +59,9 @@ const Todo: FC<IProps> = ({addTodo, deleteTodo, markedTodo, onChange, fieldValue
           </Button>
 
           <hr />
-          <TodoList todo={todos} toggleChecked={handleToggleChecked} toggleDelete={handleToggleDelete} />
+          <TodoList toggleChecked={handleToggleChecked} toggleDelete={handleToggleDelete}>
+            {todos}
+          </TodoList>
         </Container>
       </main>
     </div>
