@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: #3f51b5;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.login-container {
+	display: flex;
+	margin-top: 64px;
+	align-items: center;
+	flex-direction: column;
+}
+
+.login-form {
+	width: 100%;
+  margin-top: 8px;
+}
+
+.login-form .MuiButton-root {
+	margin: 24px 0px 16px !important;
+}
+
+.main-container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.welcome-container {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.welcome-content {
+	height: '100vh'
+}
+.paper {
+	padding: 10px;
+  display: 'flex';
+  overflow: 'auto';
+  flex-direction: 'column';
+}
+
+.chart {
+	height: 200
+}
+
+.nav-bar-title {
+	flex-grow: 1;
+}
+
+.nav-bar-link a {
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 6px 8px;
+}
+.nav__active {
+	color: #fce38a !important;
+}
+
+.todo-container {
+	display: flex;
+}
+.todo-content {
+	flex-grow: 1;
+}
+.todo-box {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.completed span {
+  text-decoration: line-through;
+}
