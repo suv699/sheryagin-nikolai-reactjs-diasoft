@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {Logout} from '../actions/authActions';
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IProps {
   logout: () => void;
 }
-function NavBar({logout}: IProps) {
+const NavBar: FC<IProps> = ({logout}: IProps) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -63,7 +63,7 @@ function NavBar({logout}: IProps) {
       </AppBar>
     </div>
   );
-}
+};
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     logout: () => {

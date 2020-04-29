@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -18,7 +18,7 @@ type TRow = {
   paymentMethod: string;
   amount: number;
 };
-export default function SimpleTable({data: rows = []}: TProps) {
+const SimpleTable: FC<TProps> = ({data: rows = []}: TProps) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -45,4 +45,5 @@ export default function SimpleTable({data: rows = []}: TProps) {
       </Table>
     </TableContainer>
   );
-}
+};
+export default SimpleTable;
