@@ -9,13 +9,7 @@ import './index.css';
 import {App} from './App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
-  ),
-);
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 const app = (
   <Provider store={store}>
     <StrictMode>

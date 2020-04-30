@@ -21,6 +21,7 @@
     "@typescript-eslint/camelcase": 0,
     "no-prototype-builtins": 0,
     "prettier/prettier": "error",
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "react/prop-types": 0
   }
 }
