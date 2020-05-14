@@ -15,6 +15,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
+import {TRootStore} from '../reducers/rootReducer';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -130,8 +131,8 @@ const LoginForm: React.FC<IProps & IHandlers> = ({
   );
 };
 
-export default connect(
-  (state: any) => ({
+export default connect<IProps, IHandlers, TRootStore>(
+  (state) => ({
     authData: state.auth,
     msg: state.notification,
   }),
