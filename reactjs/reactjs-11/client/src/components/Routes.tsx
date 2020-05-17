@@ -5,6 +5,7 @@ import RegistrationForm from '../containers/RegistrationForm';
 import {Welcome} from './Welcome';
 import Todo from '../containers/Todo';
 import ViewTodo from '../containers/ViewTodo';
+import {fetchGetTodo} from '../thunk/fetchTodo';
 
 export const useRoutes = (isAuthenticated: boolean) => {
   if (isAuthenticated) {
@@ -12,7 +13,13 @@ export const useRoutes = (isAuthenticated: boolean) => {
       <Switch>
         <Route path="/welcome" exact component={Welcome}></Route>
         <Route path="/todo" exact component={Todo}></Route>
-        <Route path="/todo/:id" exact render={({match}) => <ViewTodo id={match.params.id} />}></Route>
+        <Route
+          path="/todo/:id"
+          exact
+          render={({match}) => {
+            fetchGetTodo();
+            return <ViewTodo id={match.params.id} />;
+          }}></Route>
         <Redirect to="/welcome" />
       </Switch>
     );

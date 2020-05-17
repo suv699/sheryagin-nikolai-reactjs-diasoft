@@ -1,19 +1,30 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Button, Container} from '@material-ui/core';
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Typography} from '@material-ui/core';
 import {ITodo} from '../models/interfeces';
+import {getSelectTodo} from '../thunk/fetchTodo';
 interface IOwnProps {
   id: number;
 }
 interface IProps {
   id?: number;
   todos?: ITodo[];
+  selectedTodo: ITodo;
+  getSelectTodo: (id: number) => void;
 }
-const ViewTodo: FC<IProps> = ({id, todos = []}) => {
+const ViewTodo: FC<IProps> = ({id, selectedTodo, getSelectTodo}) => {
   const history = useHistory();
-  const item = todos[todos.length - 1] || {};
+  // const item = todos[todos.length - 1] || {};
+  const item = selectedTodo;
+  useEffect(() => {
+    getSelectTodo(id!);
+  }, []);
+
+  if (!item) {
+    return <div>Loading ...</div>;
+  }
   return (
     <Container maxWidth="lg">
       <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -45,7 +56,7 @@ const ViewTodo: FC<IProps> = ({id, todos = []}) => {
 
 export default connect(
   ({todos}: any, {id}: IOwnProps) => ({
-    todos: todos.todos.filter((it: ITodo) => it.id + '' === id + ''),
+    selectedTodo: todos.selectedTodo,
   }),
-  null,
+  {getSelectTodo},
 )(ViewTodo);

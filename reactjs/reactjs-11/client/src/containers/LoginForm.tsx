@@ -131,7 +131,7 @@ const LoginForm: React.FC<IProps & IHandlers> = ({
   );
 };
 
-export default connect<IProps, IHandlers, TRootStore>(
+export default connect<IProps, IHandlers, {}, TRootStore>(
   (state) => ({
     authData: state.auth,
     msg: state.notification,

@@ -35,9 +35,14 @@ const updateTodo = (req, res) => {
   // TODO[idx].checked = !TODO[idx].checked;
   res.json({ success: true, data: TODO[idx], message: 'Запись обновлена' });
 };
+const getSelectTodo = (req, res) => {
+  const idx = TODO.findIndex((t) => t.id + '' === req.params.id + '');
+  res.json({ success: true, data: TODO[idx] });
+};
 module.exports = {
   addTodo,
   getTodo,
   deleteTodo,
   updateTodo,
+  getSelectTodo,
 };

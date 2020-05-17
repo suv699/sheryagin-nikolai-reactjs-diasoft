@@ -1,10 +1,11 @@
-import {onChangeTodoField, deleteTodo, markedTodo, addTodo, onChangeTodos} from './action';
+import {onChangeTodoField, deleteTodo, markedTodo, addTodo, onChangeTodos, selectedTodo} from './action';
 import {createReducer} from 'typesafe-actions';
 import {ITodo} from '../../models/interfeces';
 
 const initialState = {
   todos: [],
   value: '',
+  selectedTodo: null,
 };
 interface IState {
   todos: ITodo[];
@@ -37,4 +38,5 @@ export const todoReducer = createReducer<IState, IAction>(initialState)
   .handleAction([onChangeTodos], (state, {payload}) => ({
     ...state,
     todos: payload,
-  }));
+  }))
+  .handleAction([selectedTodo], (state, {payload}) => ({...state, selectedTodo: payload}));

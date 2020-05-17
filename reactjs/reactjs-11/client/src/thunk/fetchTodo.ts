@@ -1,5 +1,5 @@
 import {ITodo} from '../models/interfeces';
-import {deleteTodo, addTodo, onChangeTodos, markedTodo} from '../reducers/todo/action';
+import {deleteTodo, addTodo, onChangeTodos, markedTodo, selectedTodo} from '../reducers/todo/action';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -30,6 +30,19 @@ export const fetchAddTodo = (newTodo: ITodo) => {
     }
   };
 };
+
+export const getSelectTodo = (id: number) => {
+  return async (dispatch: any) => {
+    const response = await fetch(`/api/todo/${id}`, {
+      method: 'POST',
+      body: JSON.stringify({id}),
+      headers,
+    });
+    const json = await response.json();
+    json.success && dispatch(selectedTodo(json.data));
+  };
+};
+
 // удалить запись по id
 export const fetchDeleteTodo = (id: number) => {
   return async (dispatch: any) => {
@@ -54,9 +67,5 @@ export const fetchUpdateTodo = (item: ITodo) => {
 
     const json = await response.json();
     json.success && dispatch(markedTodo(json.data.id, json.data));
-    // return {
-    //   type: actionTypes.TODOUPDATE,
-    //   payload: data,
-    // };
   };
 };
