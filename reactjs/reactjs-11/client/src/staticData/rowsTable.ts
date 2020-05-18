@@ -1,0 +1,19 @@
+// Generate Order Data
+function createDataTable(
+  id: number,
+  date: string,
+  name: string,
+  shipTo: string,
+  paymentMethod: string,
+  amount: number,
+) {
+  return {id, date, name, shipTo, paymentMethod, amount};
+}
+
+export const rowsTable = [
+  createDataTable(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
+  createDataTable(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
+  createDataTable(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
+  createDataTable(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
+  createDataTable(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
+];
